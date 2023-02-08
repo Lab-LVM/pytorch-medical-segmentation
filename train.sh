@@ -23,6 +23,9 @@ python -W ignore train_ACDC.py -m PVT-CASCADE-pt --cuda 1 --use-wandb
 python -W ignore train_polyp.py -m PVT-CASCADE-pt --cuda 1 --use-wandb
 python -W ignore train_synapse.py -m PVT-CASCADE-pt --cuda 1 --use-wandb
 
+#### SwinUnet
+
+
 ################################################################################
 # if you want to apply multi-way to each model,
 # add "multiway" in front of model name

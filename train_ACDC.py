@@ -158,7 +158,7 @@ if re.findall("CASCADE", args.model):
     base_lr = 0.0001
     optimizer = optim.AdamW(net.parameters(), lr=base_lr, weight_decay=0.0001)
 else:
-    base_lr = 0.01
+    base_lr = args.base_lr
     optimizer = optim.SGD(net.parameters(), lr=base_lr, momentum=0.9, weight_decay=0.0001)
 ce_loss = CrossEntropyLoss()
 dice_loss = DiceLoss(args.num_classes)

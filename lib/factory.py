@@ -3,7 +3,8 @@ import torch.nn as nn
 import numpy as np
 from lib.networks import TransCASCADE, PVT_CASCADE
 from lib.cnn_vit_backbone import TransUnet
-from lib.swinunet import SwinUnet, get_config
+from lib.swinunet import SwinUnet
+from lib.swin_cfg import get_config
 
 def create_model(args, config_vit=None):
     if args.model.startswith("TransUnet"):
@@ -20,10 +21,10 @@ def create_model(args, config_vit=None):
         config = get_config(args)
         args.base_lr = 0.05
         model = SwinUnet(config, img_size=args.img_size, num_classes=args.num_classes).cuda()
-        if args.model.split("-")[-1] == "pt":
-            print("## Loading Weight from", config_vit.pretrained_path, "...")
-            model.load_from(config)
-            print("## Successfully Loading!!")
+        # if args.model.split("-")[-1] == "pt":
+        print("## Loading Weight from", config.MODEL.PRETRAIN_CKPT, "...")
+        model.load_from(config)
+        print("## Successfully Loading!!")
 
     elif args.model.startswith("TransCASCADE"):
         config_vit.encoderType = "normal"
